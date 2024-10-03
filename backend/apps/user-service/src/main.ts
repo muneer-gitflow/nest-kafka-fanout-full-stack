@@ -3,7 +3,7 @@ import { UserServiceModule } from './user-service.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(UserServiceModule);
-  
+
   // Enable CORS
   app.enableCors({
     origin: ['http://localhost:3000', 'http://localhost:3001'], // Add your frontend URL(s) here

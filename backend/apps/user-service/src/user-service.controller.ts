@@ -12,15 +12,18 @@ export class UserServiceController implements OnModuleInit {
   async onModuleInit() {
     setInterval(() => {
       this.sendEvent();
-    }, 5000);
+    }, 10000);
   }
 
   async sendEvent() {
     const message = {
       timestamp: new Date().toISOString(),
-      event: 'Test event',
+      event: {
+        userId: '123',
+        status: Math.random() > 0.5 ? 'online' : 'offline',
+      },
     };
-    await this.kafkaService.emit('test', message);
+    await this.kafkaService.emit('user.status.updated', message);
   }
 
   @Get()
