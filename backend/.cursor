@@ -1,0 +1,8 @@
+plan
+
+
+user service -- send events to kafka as user online and offline randomly in every 5 seconds
+
+present service -- listen to the events and store in postgres
+
+topic -- user_online_offline
