@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { UserServiceController } from './user-service.controller';
 import { UserServiceService } from './user-service.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         },
       },
     ]),
+    PrismaModule,
   ],
   controllers: [UserServiceController],
   providers: [UserServiceService],
