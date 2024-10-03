@@ -4,41 +4,45 @@ import { faker } from '@faker-js/faker';
 const prisma = new PrismaClient();
 
 async function main() {
-  // Create 20 users
+  // Create users
   const users = await Promise.all(
     Array.from({ length: 20 }, () =>
       prisma.user.create({
         data: {
           name: faker.person.fullName(),
+          email: faker.internet.email(),
           online: faker.datatype.boolean(),
         },
-      })
-    )
+      }),
+    ),
   );
 
   // Create chats for each user
   for (const user of users) {
     const messageCount = faker.number.int({ min: 30, max: 40 });
-    const messages = Array.from({ length: messageCount }, (_, index) => ({
-      sender: index % 2 === 0 ? user.name : 'You',
-      content: faker.lorem.sentence(),
-      time: faker.date.past(),
-      type: 'text',
-      status: faker.helpers.arrayElement(['sent', 'delivered', 'read']),
-    }));
-
-    // Sort messages by time
-    messages.sort((a, b) => a.time.getTime() - b.time.getTime());
+    const chatUser = faker.helpers.arrayElement(
+      users.filter((u) => u.id !== user.id),
+    );
 
     await prisma.chat.create({
       data: {
-        name: user.name,
-        lastMessage: messages[messages.length - 1].content,
-        time: messages[messages.length - 1].time,
+        name: chatUser.name,
+        lastMessage: faker.lorem.sentence(),
+        time: faker.date.recent(),
         unread: faker.number.int({ min: 0, max: 5 }),
-        userId: user.id,
+        user: { connect: { id: user.id } },
         messages: {
-          create: messages,
+          create: Array.from({ length: messageCount }, () => ({
+            content: faker.lorem.sentence(),
+            time: faker.date.recent(),
+            type: faker.helpers.arrayElement(['text', 'image', 'file']),
+            status: faker.helpers.arrayElement(['sent', 'delivered', 'read']),
+            sender: {
+              connect: {
+                id: faker.helpers.arrayElement([user.id, chatUser.id]),
+              },
+            },
+          })),
         },
       },
     });

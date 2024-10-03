@@ -9,9 +9,7 @@ import { IntrospectAndCompose } from '@apollo/gateway';
       driver: ApolloGatewayDriver,
       gateway: {
         supergraphSdl: new IntrospectAndCompose({
-          subgraphs: [
-            { name: 'users', url: 'http://localhost:3002/graphql' },
-          ],
+          subgraphs: [{ name: 'users', url: 'http://localhost:3002/graphql' }],
         }),
       },
     }),
