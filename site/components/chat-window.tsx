@@ -7,7 +7,7 @@ import { Chat, Message } from '../types/chat'
 import MessageBubble from './MessageBubble'
 
 interface ChatWindowProps {
-  selectedChat: number | null
+  selectedChat: string | null
   chats: Chat[]
   messages: Message[]
 }
@@ -27,7 +27,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
     )
   }
 
-  const currentChat = chats.find((chat) => chat.id === selectedChat)
+  const currentChat = chats.find((chat) => chat.id === Number(selectedChat))
 
   return (
     <div className="hidden md:flex flex-col w-2/3 bg-gray-900">
