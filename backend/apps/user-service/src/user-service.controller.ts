@@ -16,11 +16,21 @@ export class UserServiceController implements OnModuleInit {
   }
 
   async sendEvent() {
+    const users = await this.userServiceService.getUsers();
+
+    if (users?.nodes?.length === 0) return;
+
+    const randomUser =
+      users.nodes[Math.floor(Math.random() * users.nodes.length)];
+
     const message = {
       timestamp: new Date().toISOString(),
-      event: 'Test event',
+      event: {
+        userId: randomUser.id,
+        status: Math.random() > 0.5 ? 'online' : 'offline',
+      },
     };
-    await this.kafkaService.emit('test', message);
+    await this.kafkaService.emit('user.status.updated', message);
   }
 
   @Get()

@@ -2,42 +2,39 @@ import { ObjectType, Field, ID } from '@nestjs/graphql';
 import { User, PageInfo } from './user.model';
 
 @ObjectType()
-export class Message {
+export class Chat {
   @Field(() => ID)
   id: number;
 
   @Field()
-  content: string;
+  name: string;
+
+  @Field({ nullable: true })
+  lastMessage?: string;
 
   @Field()
   time: Date;
 
   @Field()
-  type: string;
-
-  @Field()
-  status: string;
+  unread: number;
 
   @Field(() => User)
-  chat: User;
-
-  @Field(() => User)
-  sender: User;
+  user: User;
 }
 
 @ObjectType()
-class MessageEdge {
-  @Field(() => Message)
-  node: Message;
+class ChatEdge {
+  @Field(() => Chat)
+  node: Chat;
 
   @Field()
   cursor: string;
 }
 
 @ObjectType()
-export class MessageConnection {
-  @Field(() => [MessageEdge])
-  edges: MessageEdge[];
+export class ChatConnection {
+  @Field(() => [ChatEdge])
+  edges: ChatEdge[];
 
   @Field(() => PageInfo)
   pageInfo: PageInfo;

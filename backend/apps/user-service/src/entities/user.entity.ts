@@ -12,6 +12,6 @@ export class User {
   @Column({ default: false })
   online: boolean;
 
-  @OneToMany(() => Chat, chat => chat.user)
+  @OneToMany(() => Chat, (chat) => chat.userId)
   chats: Chat[];
 }

@@ -3,7 +3,10 @@ import { UserServiceController } from './user-service.controller';
 import { UserServiceService } from './user-service.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/apollo';
+import {
+  ApolloFederationDriver,
+  ApolloFederationDriverConfig,
+} from '@nestjs/apollo';
 import { UserResolver } from './user.resolver';
 import { PrismaModule } from './prisma/prisma.module';
 

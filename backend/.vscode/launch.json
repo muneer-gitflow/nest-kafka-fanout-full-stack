@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug API Service",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start:debug:api", "--", "--inspect-brk"],
+      "autoAttachChildProcesses": true,
+      "restart": true,
+      "sourceMaps": true,
+      "stopOnEntry": false,
+      "console": "integratedTerminal",
+      "envFile": "${workspaceFolder}/.env" // Path to your .env file
+    }
+  ]
+}
