@@ -12,14 +12,21 @@ export class UserServiceController implements OnModuleInit {
   async onModuleInit() {
     setInterval(() => {
       this.sendEvent();
-    }, 10000);
+    }, 5000);
   }
 
   async sendEvent() {
+    const users = await this.userServiceService.getUsers();
+
+    if (users?.nodes?.length === 0) return;
+
+    const randomUser =
+      users.nodes[Math.floor(Math.random() * users.nodes.length)];
+
     const message = {
       timestamp: new Date().toISOString(),
       event: {
-        userId: '123',
+        userId: randomUser.id,
         status: Math.random() > 0.5 ? 'online' : 'offline',
       },
     };

@@ -2215,6 +2215,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"graphql-ws@npm:^5.16.0":
+  version: 5.16.0
+  resolution: "graphql-ws@npm:5.16.0"
+  peerDependencies:
+    graphql: ">=0.11 <=16"
+  checksum: e3e077ec187a92be3fd5dfae49e23af11a82711d3537064384f6861c2b5ceb339f60dc1871d0026b47ff05e4ed3c941404812a8086347e454688e0e6ef0e69f3
+  languageName: node
+  linkType: hard
+
 "graphql@npm:^16.9.0":
   version: 16.9.0
   resolution: "graphql@npm:16.9.0"
@@ -3907,6 +3916,7 @@ __metadata:
     eslint: ^8
     eslint-config-next: 14.2.14
     graphql: ^16.9.0
+    graphql-ws: ^5.16.0
     lodash: ^4.17.21
     lucide-react: ^0.447.0
     next: 14.2.14
@@ -4173,9 +4183,9 @@ __metadata:
   linkType: hard
 
 "tailwind-merge@npm:^2.5.2":
-  version: 2.5.2
-  resolution: "tailwind-merge@npm:2.5.2"
-  checksum: af745fc16245ac14eb5d3f0b9d076c024321877ad45f43b324465f6aa7f8b5de3816640594fbf6ac8b3500f70ff2687345787888744196ff6f82dfe9a1f99b97
+  version: 2.5.3
+  resolution: "tailwind-merge@npm:2.5.3"
+  checksum: 2f91798d1b659911d37f3793b7729dc040e2520bc0ff118a6aa3041e7c003b4c63b45b89f2813b5a9da895c6271c253838f83b2932128e4b9cb87701d4442df2
   languageName: node
   linkType: hard
 
